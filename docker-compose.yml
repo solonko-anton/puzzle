@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  server:
+    build: server/
+    ports:
+      - 8000:8000
+    volumes:
+      - ./server:/app
+
+
+  client:
+    build:
+      context: ./client/my-next-app
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./my-next-app/client
+    depends_on:
+      - server
